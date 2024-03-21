@@ -25,4 +25,4 @@ def get_metadata(video_id, api_key):
 
 if __name__ == "__main__":
     # get_video("https://www.youtube.com/shorts/_7tQmQn_qO0", "test.mp4")
-    get_metadata("_7tQmQn_qO0", "AIzaSyCFh7zoDAWE26chAQbl3xrB_NkGzqnHUwM")
+    get_metadata("_7tQmQn_qO0", "")
