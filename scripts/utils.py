@@ -1,6 +1,7 @@
 import pytube
 import json
 import os
+import sys
 from pytube import YouTube
 from urllib import request
 from time import sleep
@@ -17,7 +18,7 @@ def get_video(url, output):
         return False
 
 
-def get_metadata(video_id, api_key):
+def get_metadata(video_id, api_key, output):
     url = "https://www.googleapis.com/youtube/v3/videos?id={}&key={}&part=snippet,contentDetails,statistics,status".format(video_id, api_key)
     res = request.urlopen(url=url)
     headers = {
@@ -25,7 +26,8 @@ def get_metadata(video_id, api_key):
     req = request.Request(url=url, headers=headers)  # 包装请求对象
     res = request.urlopen(req)  # 发请求
     html = res.read().decode()  # 获取响应内容
-    print(html)
+    json.dump(html, open(output, "w"), ensure_ascii=False)
+
     return 0
 
 
@@ -124,4 +126,7 @@ if __name__ == "__main__":
     os.mkdir("../data/videos/20240322")
 
     for tmp in data:
-        print(tmp)
+        file_name = tmp.split("/")[-1]
+        get_video(tmp, "../data/videos/20240322/{}.mp4".format(file_name))
+        get_metadata(file_name, sys.argv[1], "../data/metadatas/20240322/{}.json".format(file_name))
+        print("Done")
