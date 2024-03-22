@@ -26,6 +26,7 @@ def get_metadata(video_id, api_key, output):
     req = request.Request(url=url, headers=headers)  # 包装请求对象
     res = request.urlopen(req)  # 发请求
     html = res.read().decode()  # 获取响应内容
+    html = eval(str(html).replace("\n", ""))
     json.dump(html, open(output, "w"), ensure_ascii=False)
 
     return 0
@@ -123,8 +124,8 @@ if __name__ == "__main__":
 
     data = json.load(open("../data_all/20240322.json", "r"))
 
-    # os.mkdir("../data/metadatas/20240322")
-    # os.mkdir("../data/videos/20240322")
+    os.mkdir("../data/metadatas/20240322")
+    os.mkdir("../data/videos/20240322")
 
     for tmp in data:
         file_name = tmp.split("/")[-1]
