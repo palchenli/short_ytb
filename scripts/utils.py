@@ -130,3 +130,4 @@ if __name__ == "__main__":
         get_video(tmp, "../data/videos/20240322/{}.mp4".format(file_name))
         get_metadata(file_name, sys.argv[1], "../data/metadatas/20240322/{}.json".format(file_name))
         print("Done")
+        sleep(1)
