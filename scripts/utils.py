@@ -26,7 +26,7 @@ def get_metadata(video_id, api_key, output):
     req = request.Request(url=url, headers=headers)  # 包装请求对象
     res = request.urlopen(req)  # 发请求
     html = res.read().decode()  # 获取响应内容
-    html = eval(str(html).replace("\n", ""))
+    # html = eval(str(html).replace("\n", ""))
     json.dump(html, open(output, "w"), ensure_ascii=False)
 
     return 0
