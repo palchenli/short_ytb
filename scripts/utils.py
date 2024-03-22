@@ -122,8 +122,9 @@ if __name__ == "__main__":
     # collect_data()
 
     data = json.load(open("../data_all/20240322.json", "r"))
-    os.mkdir("../data/metadatas/20240322")
-    os.mkdir("../data/videos/20240322")
+
+    # os.mkdir("../data/metadatas/20240322")
+    # os.mkdir("../data/videos/20240322")
 
     for tmp in data:
         file_name = tmp.split("/")[-1]
