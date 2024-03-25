@@ -124,12 +124,16 @@ if __name__ == "__main__":
 
     data = json.load(open("../data_all/20240322.json", "r"))
 
-    os.mkdir("../data/metadatas/20240322")
-    os.mkdir("../data/videos/20240322")
+    if not os.path.exists("../data/metadatas/20240322"):
+        os.mkdir("../data/metadatas/20240322")
+    if not os.path.exists("../data/videos/20240322"):
+        os.mkdir("../data/videos/20240322")
 
     for tmp in data:
         file_name = tmp.split("/")[-1]
-        get_video(tmp, "../data/videos/20240322/{}.mp4".format(file_name))
-        get_metadata(file_name, sys.argv[1], "../data/metadatas/20240322/{}.json".format(file_name))
+        if not os.path.exists("../data/videos/20240322/{}.mp4".format(file_name)):
+            get_video(tmp, "../data/videos/20240322/{}.mp4".format(file_name))
+        if not os.path.exists("../data/metadatas/20240322/{}.json".format(file_name)):
+            get_metadata(file_name, sys.argv[1], "../data/metadatas/20240322/{}.json".format(file_name))
         print("Done")
         sleep(1)
